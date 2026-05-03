@@ -1,0 +1,12 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Background worker — no HTTP port needed
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 10
+
+# Override in the Railway dashboard if your WORKFLOW.md lives elsewhere
+# [deploy.envVars]
+# WORKFLOW_PATH = "/app/WORKFLOW.md"
