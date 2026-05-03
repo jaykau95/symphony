@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Symphony Python entrypoint
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PYTHON_DIR="$(dirname "$SCRIPT_DIR")"
+
+exec python3 -m symphony.main "$@"
