@@ -30,5 +30,6 @@ WORKFLOW="${WORKFLOW_PATH:-/app/WORKFLOW.md}"
 echo "Starting Symphony with workflow: $WORKFLOW"
 
 exec python3 -m symphony.main "$WORKFLOW" \
+    --port "${PORT:-8080}" \
     --logs-root "${LOGS_ROOT:-/app/log}" \
     --log-level "${LOG_LEVEL:-INFO}"

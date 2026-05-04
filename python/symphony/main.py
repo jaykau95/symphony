@@ -1,12 +1,13 @@
 """CLI entrypoint for Symphony Python.
 
 Usage:
-    symphony [WORKFLOW_PATH] [--logs-root DIR] [--log-level LEVEL]
+    symphony [WORKFLOW_PATH] [--port PORT] [--logs-root DIR] [--log-level LEVEL]
 
 Arguments:
     WORKFLOW_PATH   Path to WORKFLOW.md (default: ./WORKFLOW.md)
 
 Options:
+    --port PORT         Enable status dashboard on this port (e.g. 8080)
     --logs-root DIR     Directory for log files (default: ./log)
     --log-level LEVEL   Logging level: DEBUG|INFO|WARNING|ERROR (default: INFO)
 """
@@ -16,6 +17,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import logging
+import os
 import signal
 import sys
 from pathlib import Path
@@ -37,6 +39,13 @@ def _parse_args(argv=None) -> argparse.Namespace:
         default="WORKFLOW.md",
         metavar="WORKFLOW_PATH",
         help="Path to WORKFLOW.md (default: ./WORKFLOW.md)",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=int(os.environ.get("PORT", 0)) or None,
+        metavar="PORT",
+        help="Enable status dashboard HTTP server on this port",
     )
     parser.add_argument(
         "--logs-root",
@@ -73,7 +82,6 @@ def main(argv=None) -> int:
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
-    # Graceful shutdown on SIGINT / SIGTERM
     def _shutdown(signame: str):
         logger.info(f"received_signal signal={signame} initiating_shutdown")
         for task in asyncio.all_tasks(loop):
@@ -82,16 +90,30 @@ def main(argv=None) -> int:
     for sig in (signal.SIGINT, signal.SIGTERM):
         loop.add_signal_handler(sig, lambda s=sig.name: _shutdown(s))
 
-    logger.info(f"symphony_starting workflow={workflow_path}")
+    async def _run_all():
+        tasks = [asyncio.create_task(orchestrator.run(), name="orchestrator")]
+
+        if args.port:
+            from .status_server import serve as serve_status
+            tasks.append(
+                asyncio.create_task(
+                    serve_status(args.port, orchestrator.snapshot),
+                    name="status-server",
+                )
+            )
+            logger.info(f"status_dashboard_enabled port={args.port}")
+
+        await asyncio.gather(*tasks)
+
+    logger.info(f"symphony_starting workflow={workflow_path} port={args.port}")
     try:
-        loop.run_until_complete(orchestrator.run())
+        loop.run_until_complete(_run_all())
     except (KeyboardInterrupt, asyncio.CancelledError):
         logger.info("symphony_stopped")
     except Exception as exc:
         logger.error(f"symphony_fatal_error: {exc}")
         return 1
     finally:
-        # Cancel remaining tasks
         pending = asyncio.all_tasks(loop)
         for task in pending:
             task.cancel()

@@ -31,4 +31,6 @@ RUN chmod +x /docker-entrypoint.sh
 # Workspace directory — mount a Railway Volume here for persistence
 RUN mkdir -p /workspaces
 
+EXPOSE 8080
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
