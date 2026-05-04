@@ -20,7 +20,7 @@ workspace:
   root: $SYMPHONY_WORKSPACE_ROOT
 hooks:
   after_create: |
-    git clone --depth 1 https://github.com/your-org/your-repo.git .
+    git clone --depth 1 https://github.com/jaykau95/symphony.git .
   timeout_ms: 120000
 agent:
   max_concurrent_agents: 5

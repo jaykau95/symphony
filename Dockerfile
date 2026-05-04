@@ -21,8 +21,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Application code
 COPY python/ ./
 
-# Default WORKFLOW.md (can be overridden via WORKFLOW_PATH env var)
-COPY elixir/WORKFLOW.md ./WORKFLOW.md
+# WORKFLOW.md used by the Python orchestrator
+COPY python/WORKFLOW.railway.md ./WORKFLOW.md
 
 # Startup script (writes Codex auth + launches Symphony)
 COPY docker-entrypoint.sh /docker-entrypoint.sh
