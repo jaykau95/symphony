@@ -1,18 +1,34 @@
 #!/usr/bin/env bash
 # Symphony container entrypoint.
 # Writes Codex auth from environment, then starts the orchestrator.
+#
+# Auth modes (in priority order):
+#
+#   1. CODEX_AUTH_JSON  — base64-encoded contents of ~/.codex/auth.json
+#                         Use this for Codex OAuth credits (recommended).
+#                         Get it by running: base64 -w0 ~/.codex/auth.json
+#
+#   2. OPENAI_API_KEY   — standard OpenAI API key (sk-...)
+#                         Uses API credits, not Codex subscription credits.
 
 set -euo pipefail
 
+mkdir -p ~/.codex
+
 # ── Codex authentication ────────────────────────────────────────────────────
-# Codex reads ~/.codex/auth.json.  We write it from OPENAI_API_KEY so the
-# key never has to be baked into the image.
-if [[ -n "${OPENAI_API_KEY:-}" ]]; then
-    mkdir -p ~/.codex
+
+if [[ -n "${CODEX_AUTH_JSON:-}" ]]; then
+    # Mode 1: OAuth / Codex credits — full auth.json supplied as base64
+    echo "$CODEX_AUTH_JSON" | base64 -d > ~/.codex/auth.json
+    echo "Codex auth configured from CODEX_AUTH_JSON (OAuth / Codex credits)"
+
+elif [[ -n "${OPENAI_API_KEY:-}" ]]; then
+    # Mode 2: API key — uses OpenAI API credits
     printf '{"apiKey":"%s"}\n' "$OPENAI_API_KEY" > ~/.codex/auth.json
-    echo "Codex auth configured from OPENAI_API_KEY"
+    echo "Codex auth configured from OPENAI_API_KEY (API credits)"
+
 else
-    echo "WARNING: OPENAI_API_KEY is not set — Codex sessions will likely fail"
+    echo "WARNING: Neither CODEX_AUTH_JSON nor OPENAI_API_KEY is set — Codex sessions will fail"
 fi
 
 # ── SSH key for git clone in hooks (optional) ───────────────────────────────
