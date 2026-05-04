@@ -2,7 +2,7 @@
 tracker:
   kind: linear
   api_key: $LINEAR_API_KEY
-  project_slug: "your-project-slug"   # ← replace with your Linear project slug
+  project_slug: "symphony-ee464eab370b"
   active_states:
     - Todo
     - In Progress
@@ -17,7 +17,7 @@ tracker:
 polling:
   interval_ms: 30000
 workspace:
-  root: $SYMPHONY_WORKSPACE_ROOT      # ← set to /workspaces in Railway env vars
+  root: $SYMPHONY_WORKSPACE_ROOT
 hooks:
   after_create: |
     git clone --depth 1 https://github.com/your-org/your-repo.git .
