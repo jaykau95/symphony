@@ -22,15 +22,17 @@ No exceptions without the user overriding in writing.
   palette in §2 is complete. If a logo demands colour, it lives in the logo only.
 - **Gradients, drop shadows, glows, borders thicker than 1px.**
 - **Emoji, icons, icon rows, illustration spots, stock photography.**
-- **Multiple CTAs.** One email, one action. Footer utility links don't count.
+- **Two different actions.** One email, one action. Repeating the *same*
+  button twice is fine (§7); footer utility links don't count.
 - **Exclamation marks.** Anywhere. Including subject lines.
 - **Hype vocabulary**: *revolutionary, game-changing, unlock, supercharge,
   seamless, elevate, transform, delighted to announce, excited to share,
   don't miss out, limited time.*
 - **`Hi {FirstName}!` openers** and any merge-tag chumminess.
-- **Three-column feature grids, card decks, pricing tables, testimonial carousels.**
+- **Feature grids, card decks, pricing tables, testimonial carousels.** A
+  three-across grid of *real items with real photographs* is allowed (§7).
 - **Centre-aligned body copy.** Only display type and the stat panel centre.
-- **Dark mode inversion tricks.** See §8.
+- **Dark mode inversion tricks.** See §10.
 
 ---
 
@@ -112,38 +114,114 @@ designed object. Never substitute bold sans headings for it.
 
 ---
 
-## 5. Structure
+## 5. Purpose first — what to leave out
 
-Emails follow this spine. Drop sections that have nothing to say; never reorder.
+**The most common failure of this system is using it to publish everything you
+know.** The restraint has to apply to content, not just colour. Decide the job
+before writing a word, then cut everything that does not serve it.
 
-1. **Masthead** — wordmark only, centred, hairline beneath.
-2. **Eyebrow** — tracked caps, names the sender department or series.
-   *"FUTUREGRAIL SERVICE CENTRE"*
-3. **Hero headline** — italic serif, centred, 1–2 lines, states a position
-   rather than an offer. *"A Different Standard of Care for Vintage Timepieces"*
-4. **Opening** — two short paragraphs. The first establishes why the subject is
-   difficult. The second says how you approach it. No pitch yet.
-5. **Hero image** *(optional)* — full 512px content width, square corners.
-   **If you include one, it must be a real asset path.** An unfilled slot leaves
-   a large dead white band that reads as a broken send.
-6. **Stat panel** — the one tinted block. Giant italic numeral, tracked-caps
-   label, then one centred sentence giving the claim its context and its limit.
-7. **Numbered sections** — **roman numerals**, 3–5 of them. Tracked-caps label,
-   then one paragraph. No bullets, no icons, no rules between them.
-   *"I. MOVEMENT RESTORATION"*, *"II. CASE & BRACELET"*
-8. **Divider** — 1px `#D8D4CD`.
-9. **Closing line** — italic serif, centred, one sentence. An aphorism about the
-   subject, not about the company. *"A vintage watch, properly cared for, does
-   not resist time. It simply continues keeping it."*
-10. **CTA** — one black square button.
-11. **Micro-copy** — one line naming the alternative route. *"Reply to this
-    email or DM us to arrange a consultation."*
-12. **Footer** — preferences / unsubscribe, postal address, copyright. Outside
-    the card, on the greige.
+| Job | Reader needs | Cut |
+|---|---|---|
+| **Announce / drive registration** | What it is, when, why it matters, one action | Full inventory, house-by-house lists, process essays, backstory |
+| **Catalogue / full listing** | Every item, in order, with condition notes | Persuasion, repetition of the announcement |
+| **Explain a service** | The discipline, the limits, the proof | Item lists, logistics tables |
+
+Word budgets, hard:
+
+- **Announcement or registration email: 200–250 words.** Image-led.
+- Service or positioning email: 350–450 words.
+- Catalogue: as long as the items require, and nothing else.
+
+Rules for cutting:
+
+- **Name a representative few, then count the rest.** *"Patek Philippe, Rolex,
+  F.P. Journe, Greubel Forsey and sixteen others"* beats twenty names in a row.
+- **Three highlights, not eleven.** Pick the most valuable, the most complete
+  and the most recognisable. Link to the rest.
+- **Logistics belong in a panel, not in prose.** Dates, times, formats and
+  counts are scanned, never read. See §7.
+- If a fact does not change whether the reader acts, it belongs on the landing
+  page, not in the email.
 
 ---
 
-## 6. Copy
+## 6. Structure
+
+Both variants share the masthead, eyebrow, italic-serif headline, tinted panel,
+divider, closing line, CTA and footer. They differ in the middle.
+
+### A. Announcement / registration  *(default for a campaign)*
+
+1. **Masthead** — wordmark, hairline beneath.
+2. **Eyebrow** — what and when. *"ONLINE-ONLY AUCTION · 2–6 OCTOBER 2026"*
+3. **Headline** — italic serif, short. *"A Century of Watchmaking"*
+4. **Sub-line** — tracked caps, the qualifier the headline dropped.
+5. **Hero image** — 512px wide, square corners. Not optional here: a
+   text-only announcement is what "doesn't look good" means.
+6. **Lede** — one paragraph, three sentences. Scale, span, and the one thing
+   that makes it unusual. Nothing else.
+7. **Details panel** — the tinted block as a label/value table (§7).
+8. **Primary CTA** — immediately after the details. Most readers act here.
+9. **Highlights** — three items, images, name plus one line each. Then one
+   muted line naming a few more.
+10. **Divider → closing line → CTA repeat → micro-copy → footer.**
+
+### B. Service / positioning
+
+Masthead → eyebrow → headline → opening (2 paragraphs) → stat panel →
+**roman-numeral sections, 3–5**, tracked-caps label and one paragraph each →
+divider → closing line → CTA → micro-copy → footer.
+
+Roman numerals belong to variant B. An announcement does not need them.
+
+## 7. Components
+
+### Tinted panel — two uses, one per email
+
+**Stat** (variant B): giant italic numeral, tracked-caps label, one centred
+sentence that gives the claim its context and its limit.
+
+**Details** (variant A): a label/value table. Tracked-caps muted label in a 38%
+left column, value in 15px `#111111` on the right. Four rows is the ceiling —
+dates, bidding time, count, format. On mobile both columns go full-width and
+stack, label above value.
+
+Never put both panels in one email.
+
+### Highlights grid
+
+Three items across the 512px column: 160px cells with 16px gutters
+(160×3 + 16×2 = 512). Each cell is a 160×200 portrait image, the item name in
+**italic serif 15/21**, then one 13px sans line — a single fact, not a
+description.
+
+On mobile the cells stack. **Cap the image at `max-width:180px`** — letting it
+go to 100% blows a 160×200 portrait up to full bleed and doubles the email's
+height. This is the one place the fluid-image rule is wrong.
+
+Follow the grid with one muted 13px line naming a few more items, then stop.
+This is not the banned three-column feature grid: it is a catalogue plate, and
+it carries real items with real images, not invented benefits with icons.
+
+### CTA
+
+One **action** per email. Placing that same button twice — once after the
+details panel, once after the closing line — is correct for an announcement,
+because the two placements catch readers who decide early and readers who
+decide late. Same label, same URL, both times. Two *different* actions is the
+thing that is banned.
+
+### Images and placeholders
+
+Every `<img>` needs a real `src`. When the asset does not exist yet, ship a
+**visible placeholder** — flat `#E6E2DB`, 1px `#D6D1C8` border, corner-to-corner
+hairlines, centred tracked-caps label stating the dimensions — never an empty
+band and never a sized-but-broken image. A placeholder that announces itself
+gets replaced; white space does not.
+
+---
+
+## 8. Copy
 
 The visual restraint is worthless if the writing oversells. Hold the line:
 
@@ -162,7 +240,7 @@ The visual restraint is worthless if the writing oversells. Hold the line:
 
 ---
 
-## 7. Email-safe build rules
+## 9. Email-safe build rules
 
 This must survive Outlook. Divs and flexbox will not.
 
@@ -183,7 +261,7 @@ This must survive Outlook. Divs and flexbox will not.
 
 ---
 
-## 8. Dark mode
+## 10. Dark mode
 
 Clients that auto-invert will wreck a warm greige palette. Lock it:
 
@@ -201,21 +279,25 @@ is light only.
 
 ---
 
-## 9. Pre-flight
+## 11. Pre-flight
 
 Refuse to ship until every line is true.
 
-- [ ] Exactly **one** CTA, square-cornered, `#111111`.
+- [ ] The job is named, and the copy is inside its word budget (§5).
+- [ ] Exactly one **action**, square-cornered, `#111111`.
 - [ ] `border-radius` appears **nowhere**.
 - [ ] No hex outside the eight in §2.
 - [ ] Display type is serif **italic**; body is sans; neither role borrowed.
 - [ ] Eyebrow, section labels, stat label and CTA all share the tracked-caps
       treatment.
-- [ ] Sections use roman numerals.
+- [ ] Roman numerals only if this is variant B.
 - [ ] Exactly one quantified claim, and it is qualified.
+- [ ] No fact in the email that you were not given. No invented reassurance
+      ("free", "takes two minutes", "limited places").
 - [ ] One sentence in the email admits a limit.
 - [ ] Zero exclamation marks, zero emoji, zero banned vocabulary.
-- [ ] Every image slot has a real `src` — **no empty bands**.
+- [ ] Every image has a real `src` or a visible placeholder — **no empty bands**.
+- [ ] Mobile: highlight images capped, not fluid to 100%.
 - [ ] Layout is tables, styles are inline, dark mode is locked.
 - [ ] Renders at 600px and reflows under 600px.
 - [ ] Footer carries unsubscribe, preferences and a postal address.
