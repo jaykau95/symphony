@@ -59,7 +59,9 @@ Seven values and white. Do not add an eighth.
 - Card **600px** wide, `#FFFFFF`, centred. On mobile it goes fluid to 100%.
 - Card padding **44px** left and right → **512px content column**. Every element
   spans that column; nothing is inset further except by centring.
-- Masthead: white, logo centred, **1px `#D9D9D9`** rule beneath.
+- Masthead: white, logo centred, **1px `#D9D9D9`** rule beneath. The wordmark
+  is a hosted knockout image (white serif on a black block), ~180px wide,
+  referenced by absolute URL — never live text styled to imitate it.
 - Footer sits **outside** the white card, on the `#F0EDE8` background.
 - Stat panel: full 512px content width, `#F0EDE8`, **~208px** tall, no border.
 - CTA: **~257 × 38px**, `#111111`, **square corners**, centred.
