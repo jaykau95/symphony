@@ -197,9 +197,15 @@ Three items across the 512px column: 160px cells with 16px gutters
 **italic serif 15/21**, then one 13px sans line — a single fact, not a
 description.
 
-On mobile the cells stack. **Cap the image at `max-width:180px`** — letting it
-go to 100% blows a 160×200 portrait up to full bleed and doubles the email's
-height. This is the one place the fluid-image rule is wrong.
+On mobile the cells stack and **each image goes to the full content width**.
+A half-width image stranded against a hard left edge reads as a broken asset,
+not a layout — the dead space beside it is what makes a mobile render look
+unfinished. Full width turns each item into a proper plate. Budget for it: three
+4:5 plates add roughly 1,300px of height on a phone, which is the correct trade.
+
+Author the source at **1024×1280** so it stays sharp when a 160px desktop cell
+becomes a 512px full-width plate at 2×. Bump the caption on mobile too (name to
+19/26, line to 15/24) — 13px type under a full-width image looks orphaned.
 
 Follow the grid with one muted 13px line naming a few more items, then stop.
 This is not the banned three-column feature grid: it is a catalogue plate, and
